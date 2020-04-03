@@ -1,6 +1,8 @@
 # questReport
 send a quest report of a list to telegram
 
+#### HELP ON DISCORD: https://discord.gg/RDmxphS
+
 ## Install
 
 `pip3 install -r requirements.txt`
