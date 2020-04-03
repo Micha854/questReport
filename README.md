@@ -27,6 +27,10 @@ the json file can be changed during operation without having to restart the scri
 
 the script works fully automatically. it sends quest as soon as it is found and removes it automatically when it is no longer available
 
+## ToDo list
+
+- we want to build a backend to simplify the configuration of the json file
+
 ## Example
 
 ![example](https://raw.githubusercontent.com/Micha854/questReport/master/example.png)
