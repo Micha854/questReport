@@ -31,6 +31,6 @@ class Clear():
     oldMessages = oldMessages.split(', ') 
     for messageID in oldMessages:
       try:
-        bot.delete_message(ivchatID,message_id=messageID)
+        bot.delete_message(singlechatID,message_id=messageID)
       except:
         print("Alte Map Nachricht konnte nicht entfernt werden")

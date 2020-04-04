@@ -57,7 +57,7 @@ class Sql():
       pokemon_sort = "q.quest_pokemon_id DESC"
     
     # Abfragen der Daten aus der Datenbank
-    cursor.execute("SELECT p.pokestop_id, p.name, p.latitude, p.longitude, q.quest_task, q.quest_stardust, q.quest_pokemon_id, q.quest_reward_type, q.quest_item_id, q.quest_item_amount  FROM `trs_quest` q INNER JOIN pokestop p ON q.GUID = p.pokestop_id WHERE FROM_UNIXTIME(quest_timestamp,'%Y-%m-%d') = CURDATE() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + "ORDER BY q.quest_stardust DESC, " + pokemon_sort + ", " + item_sort + ",q.quest_item_amount DESC, q.quest_task, p.name")
+    cursor.execute("SELECT p.pokestop_id, p.name, p.latitude, p.longitude, q.quest_task, q.quest_stardust, q.quest_pokemon_id, q.quest_reward_type, q.quest_item_id, q.quest_item_amount  FROM `trs_quest` q INNER JOIN pokestop p ON q.GUID = p.pokestop_id WHERE FROM_UNIXTIME(quest_timestamp,'%Y-%m-%d') = CURDATE() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + "ORDER BY q.quest_stardust DESC, " + pokemon_sort + ", " + item_sort + ", q.quest_item_amount DESC, q.quest_task, p.name")
     #all = cursor.fetchall()
     all = list(cursor.fetchall())
     
