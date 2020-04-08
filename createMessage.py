@@ -9,6 +9,7 @@ class createMessage():
     questType = questRewardTypes.rewardType()
     quest = questReward.reward()
     overview = ""
+    overview2= ""
     bolt_line= ""
 
     stardust = values["stardust"]
@@ -20,7 +21,9 @@ class createMessage():
 
     i = 0 # all found today quests
     x = 0 # all filtered quests
-    id = 0    
+    id = 0  
+
+    limit = 70 # limit of a list, you can personalize this value  
     
     print("####################==========\\ " + str(datetime.datetime.now()) + " /==========####################\n")
 
@@ -141,9 +144,20 @@ class createMessage():
               linked = cfg.singlechatUrl + "/" + str(id)
             else:
               linked = "https://maps.google.de/?q=" + str(Sql.latitude[i]) + ", " + str(Sql.longitude[i])
-            overview += msg + "<a href='" + linked + "'>" + str(name) + "</a>" + msg2
+            
+            #split the lists
+            if x < limit:
+              overview += msg + "<a href='" + linked + "'>" + str(name) + "</a>" + msg2
+            else:
+              if len(overview2) > 5:
+                overview2+= msg + "<a href='" + linked + "'>" + str(name) + "</a>" + msg2
+              elif Sql.quest_task[i-1] == Sql.quest_task[i]:
+                #split list after new quest task
+                overview += msg + "...<a href='" + linked + "'>" + str(name) + "</a>" + msg2
+              else:
+                overview2+= msg + "<a href='" + linked + "'>" + str(name) + "</a>" + msg2
             x +=1
-          i +=1
+        i +=1
 
       getWeekday =	{
         "Monday": "Montag",
@@ -162,9 +176,9 @@ class createMessage():
       header = "\U0001F4C6 " + str(weekday) + ", " + str(data[0]) + ". " + str(data[1]) + ". " + str(data[2]) + "\n(" + str(i-1) + " Stops wurden gescannt)\n"
 
       if not x == 0:
-        send.sendOverview(header+overview)
+        send.sendOverview(header+overview,overview2)
       else:
-        send.sendOverview(overview)
+        send.sendOverview(overview,overview2)
       print("\nAktuell " + str(x) + " Meldungen von " + str(i-1) + " Stops\n")
 
       # DEBUG:
