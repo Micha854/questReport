@@ -25,7 +25,8 @@ class createMessage():
 
     limit = 70 # limit of a list, you can personalize this value  
     
-    print("####################==========\\ " + str(datetime.datetime.now()) + " /==========####################\n")
+    now = datetime.datetime.now()
+    print("####################==========\\ Update " + cfg.areaName + " " + now.strftime("%m/%d/%Y, %H:%M:%S") + " /==========####################\n")
 
     print("stardust melden: " + str(stardust))
     print("item ids melden: " + str(item))
