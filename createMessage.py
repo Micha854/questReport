@@ -16,8 +16,8 @@ class createMessage():
     item = values["item"]
     pokemon = values["pokemon"]
 
-    pokemon.sort(key=lambda x: quest.getPokemon(value=x))
-    item.sort(key=lambda x: quest.getItem(value=x, icon="icon"))
+    pokemon.sort(key=lambda x: quest.getPokemon(value=x, language=cfg.language))
+    item.sort(key=lambda x: quest.getItem(value=x, option="icon"))
 
     i = 0 # all found today quests
     x = 0 # all filtered quests
@@ -43,7 +43,7 @@ class createMessage():
 
             ## STARDUST
             if not Sql.quest_stardust[i] == 0:
-              bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(questType.getType(Sql.quest_reward_type[i])) + "</b>\n├ " + task
+              bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(questType.getType(Sql.quest_reward_type[i],cfg.language)) + "</b>\n├ " + task
               if Sql.quest_stardust[i-1] != Sql.quest_stardust[i] and not Sql.quest_stardust[i] == Sql.quest_stardust[i+1]:
                 msg = "\n" + str(bolt_line) + "\n└ "
                 msg2= "\n"
@@ -71,7 +71,7 @@ class createMessage():
             
             ## ITEM
             elif Sql.quest_item_id[i] in (item):
-              bolt_line = quest.getItem(Sql.quest_item_id[i],"icon") + " <b>" + str(Sql.quest_item_amount[i]) + " " + str(quest.getItem(Sql.quest_item_id[i], "name")) + "</b>\n├ " + task
+              bolt_line = quest.getItem(Sql.quest_item_id[i],"icon") + " <b>" + str(Sql.quest_item_amount[i]) + " " + str(quest.getItem(Sql.quest_item_id[i],cfg.language)) + "</b>\n├ " + task
               if Sql.quest_item_id[i-1] != Sql.quest_item_id[i] and not Sql.quest_item_id[i] == Sql.quest_item_id[i+1]:
                 msg = "\n" + str(bolt_line) + "\n└ "
                 msg2= "\n"
@@ -99,7 +99,7 @@ class createMessage():
             
             ## POKEMON
             elif Sql.quest_pokemon_id[i] in (pokemon):
-              bolt_line = "\U0001F47E <b>" + str(quest.getPokemon(Sql.quest_pokemon_id[i])) + "</b>\n├ " + task
+              bolt_line = "\U0001F47E <b>" + str(quest.getPokemon(Sql.quest_pokemon_id[i],cfg.language)) + "</b>\n├ " + task
               if Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i] and not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1]:
                 msg = "\n" + str(bolt_line) + "\n└ "
                 msg2= "\n"
@@ -160,26 +160,16 @@ class createMessage():
             x +=1
         i +=1
 
-      getWeekday =	{
-        "Monday": "Montag",
-        "Tuesday": "Dienstag",
-        "Wednesday": "Mittwoch",
-        "Thursday": "Donnerstag",
-        "Friday": "Freitag",
-        "Saturday": "Samstag",
-        "Sunday": "Sonntag"
-      }
-
       date = datetime.datetime.now()
       data = date.day,date.month,date.year
-      weekday = getWeekday[date.strftime("%A")]
+      weekday = self.getTranslate(date.strftime("%A"),cfg.language)
 
-      header = "\U0001F4C6 " + str(weekday) + ", " + str(data[0]) + ". " + str(data[1]) + ". " + str(data[2]) + "\n(" + str(i-1) + " Stops wurden gescannt)\n"
+      header = "\U0001F4C6 " + str(weekday) + ", " + str(data[0]) + ". " + str(data[1]) + ". " + str(data[2]) + "\n(" + str(i-1) + " " + self.getTranslate("scanned",cfg.language) + ")\n"
 
       if not x == 0:
-        send.sendOverview(header+overview,overview2)
+        send.sendOverview(header+overview,overview2,self.getTranslate("noQuest",cfg.language))
       else:
-        send.sendOverview(overview,overview2)
+        send.sendOverview(overview,overview2,self.getTranslate("noQuest",cfg.language))
       print("\nAktuell " + str(x) + " Meldungen von " + str(i-1) + " Stops\n")
 
       # DEBUG:
@@ -206,3 +196,53 @@ class createMessage():
         ausgabe += "All Variable: " + str(len(all))
         outF.writelines(ausgabe + str(e))
         outF.close()
+
+  def getTranslate(self,value,language):
+    text = {
+      "noQuest": {
+        "de": "Keine Quest gefunden",
+        "en": "No Quest found",
+        "fr": ""
+      },
+      "scanned": {
+        "de": "Stops wurden gescannt",
+        "en": "stops were scanned",
+        "fr": ""
+      },
+      "Monday": {
+        "de": "Montag",
+        "en": "Monday",
+        "fr": ""
+      },
+      "Tuesday": {
+        "de": "Dienstag",
+        "en": "Tuesday",
+        "fr": ""
+      },
+      "Wednesday": {
+        "de": "Mittwoch",
+        "en": "Wednesday",
+        "fr": ""
+      },
+      "Thursday": {
+        "de": "Donnerstag",
+        "en": "Thursday",
+        "fr": ""
+      },
+      "Friday": {
+        "de": "Freitag",
+        "en": "Friday",
+        "fr": ""
+      },
+      "Saturday": {
+        "de": "Samstag",
+        "en": "Saturday",
+        "fr": ""
+      },
+      "Sunday": {
+        "de": "Sonntag",
+        "en": "Sunday",
+        "fr": ""
+      }
+    }
+    return text[value][language]

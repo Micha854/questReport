@@ -30,7 +30,7 @@ class sendMessage():
       sleep = time.sleep(30)
       return sleep
   
-  def sendOverview(self,message,message2):
+  def sendOverview(self,message,message2,text):
     print("\nmessage1 ==> " + str(len(message)) + " (" + str(len(self.overview_old)) + ")")
     print("message2 ==> " + str(len(message2)) + " (" + str(len(self.overview_old2)) + ")")
     
@@ -55,7 +55,7 @@ class sendMessage():
     ## liste 1 oder 2 hat sich verändert ==> neu senden
     try:
       if not message:
-        message = "Keine Quest gefunden"
+        message = text
         self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True)
         self.overview_old = ""
         self.clearOldList(self.areaName,self.list_lists_ID)

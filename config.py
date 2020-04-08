@@ -17,6 +17,7 @@ class Config():
   singlechatUrl = ""
   chatId = ""
   chatUrl = ""
+  language = ""
   areaName = ""
   min_latitude = ""
   max_latitude = ""
@@ -38,6 +39,8 @@ class Config():
     self.singlechatUrl = parser.get('Bot Settings', 'singlechat_url')
     self.chatId = parser.get('Bot Settings', 'chat_id')
     self.chatUrl = parser.get('Bot Settings', 'chat_url')
+
+    self.language = parser.get('Option', 'language')
 
     self.areaName = parser.get('Geofence', 'areaName')
     self.min_latitude = parser.get('Geofence', 'minLat')
