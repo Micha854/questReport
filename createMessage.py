@@ -64,7 +64,11 @@ class createMessage():
                   msg = "\n" + str(bolt_line) + "\n├ "
                   msg2 = ""
               else:
+<<<<<<< HEAD
                 if not Sql.quest_stardust[i] == Sql.quest_stardust[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
+=======
+                if not Sql.quest_task[i] == Sql.quest_task[i+1] or not Sql.quest_stardust[i] == Sql.quest_stardust[i+1]:
+>>>>>>> 089335a1263cc39403ae1dbb04f64ed3d1752534
                   msg = "\n└ "
                   msg2= "\n"
                 else:
@@ -92,7 +96,11 @@ class createMessage():
                   msg = "\n" + str(bolt_line) + "\n├ "
                   msg2 = ""
               else:
+<<<<<<< HEAD
                 if not Sql.quest_item_id[i] == Sql.quest_item_id[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
+=======
+                if not Sql.quest_task[i] == Sql.quest_task[i+1] or not Sql.quest_item_id[i] == Sql.quest_item_id[i+1]:
+>>>>>>> 089335a1263cc39403ae1dbb04f64ed3d1752534
                   msg = "\n└ "
                   msg2= "\n"
                 else:
