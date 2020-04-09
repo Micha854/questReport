@@ -23,7 +23,9 @@ class createMessage():
     x = 0 # all filtered quests
     id = 0  
 
-    limit = 70 # limit of a list, you can personalize this value  
+    # sum of limit + puffer is the total limit
+    limit = 70 # limit of a list, you can personalize this value
+    puffer= 15 # split when reached in group 
     
     now = datetime.datetime.now()
     print("####################==========\\ *** Quest *** Update " + cfg.areaName + " " + now.strftime("%m/%d/%Y, %H:%M:%S") + " /==========####################\n")
@@ -62,7 +64,7 @@ class createMessage():
                   msg = "\n" + str(bolt_line) + "\n├ "
                   msg2 = ""
               else:
-                if not Sql.quest_task[i] == Sql.quest_task[i+1]:
+                if not Sql.quest_stardust[i] == Sql.quest_stardust[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
                   msg = "\n└ "
                   msg2= "\n"
                 else:
@@ -90,7 +92,7 @@ class createMessage():
                   msg = "\n" + str(bolt_line) + "\n├ "
                   msg2 = ""
               else:
-                if not Sql.quest_task[i] == Sql.quest_task[i+1]:
+                if not Sql.quest_item_id[i] == Sql.quest_item_id[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
                   msg = "\n└ "
                   msg2= "\n"
                 else:
@@ -118,7 +120,7 @@ class createMessage():
                   msg = "\n" + str(bolt_line) + "\n├ "
                   msg2 = ""
               else:
-                if not Sql.quest_task[i] == Sql.quest_task[i+1]:
+                if not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
                   msg = "\n└ "
                   msg2= "\n"
                 else:
@@ -152,9 +154,10 @@ class createMessage():
             else:
               if len(overview2) > 5:
                 overview2+= msg + "<a href='" + linked + "'>" + str(name) + "</a>" + msg2
-              elif Sql.quest_task[i-1] == Sql.quest_task[i]:
+              elif Sql.quest_task[i-1] == Sql.quest_task[i] and not puffer == 0:
                 #split list after new quest task
                 overview += msg + "...<a href='" + linked + "'>" + str(name) + "</a>" + msg2
+                puffer -=1
               else:
                 overview2+= msg + "<a href='" + linked + "'>" + str(name) + "</a>" + msg2
             x +=1
