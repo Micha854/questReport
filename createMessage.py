@@ -205,47 +205,47 @@ class createMessage():
       "noQuest": {
         "de": "Keine Quest gefunden",
         "en": "No Quest found",
-        "fr": ""
+        "fr": "Aucune quête trouvée"
       },
       "scanned": {
         "de": "Stops wurden gescannt",
         "en": "stops were scanned",
-        "fr": ""
+        "fr": "Les arrêts ont été scannés"
       },
       "Monday": {
         "de": "Montag",
         "en": "Monday",
-        "fr": ""
+        "fr": "Lundi"
       },
       "Tuesday": {
         "de": "Dienstag",
         "en": "Tuesday",
-        "fr": ""
+        "fr": "Mardi"
       },
       "Wednesday": {
         "de": "Mittwoch",
         "en": "Wednesday",
-        "fr": ""
+        "fr": "Mercredi"
       },
       "Thursday": {
         "de": "Donnerstag",
         "en": "Thursday",
-        "fr": ""
+        "fr": "Jeudi"
       },
       "Friday": {
         "de": "Freitag",
         "en": "Friday",
-        "fr": ""
+        "fr": "Vendredi"
       },
       "Saturday": {
         "de": "Samstag",
         "en": "Saturday",
-        "fr": ""
+        "fr": "samedi"
       },
       "Sunday": {
         "de": "Sonntag",
         "en": "Sunday",
-        "fr": ""
+        "fr": "dimanche"
       }
     }
     return text[value][language]
