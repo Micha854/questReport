@@ -140,8 +140,8 @@ class createMessage():
               list_string = list_string.split(', ') 
               id = list_string[send.list_output.index(stop)]
             else:
-              print("===> found [" + str(i) + "]")
               if cfg.singlechatId:
+                print("===> found [" + str(i) + "]")
                 id = send.send(gmaps,stop)
             if cfg.singlechatId:
               linked = cfg.singlechatUrl + "/" + str(id)
@@ -209,7 +209,7 @@ class createMessage():
       },
       "scanned": {
         "de": "Stops wurden gescannt",
-        "en": "stops were scanned",
+        "en": "Stops were scanned",
         "fr": "Les arrêts ont été scannés"
       },
       "Monday": {
