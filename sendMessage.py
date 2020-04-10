@@ -15,10 +15,12 @@ class sendMessage():
   overviewId2= 0
   areaName = ""
   
-  def send(self,gmaps,stop):
+  def send(self,latitude,longitude,bolt_line,normal_line,gmaps,stop,venue):
     try:
-      #id = self.bot.send_venue(self.singlechatID,latitude,longitude,bolt_line,normal_line,disable_notification=True)
-      id = self.bot.send_message(self.singlechatID,gmaps,parse_mode='HTML',disable_web_page_preview=False,disable_notification=True)
+      if venue == True:
+        id = self.bot.send_venue(self.singlechatID,latitude,longitude,bolt_line,normal_line,disable_notification=True)
+      else:
+        id = self.bot.send_message(self.singlechatID,gmaps,parse_mode='HTML',disable_web_page_preview=False,disable_notification=True)
       self.list_output.append(stop)
       self.list_message_ID.append(id.message_id)
       outF = open(self.areaName+"output.txt","w")

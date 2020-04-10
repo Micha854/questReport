@@ -45,23 +45,23 @@ class createMessage():
 
             ## STARDUST
             if not Sql.quest_stardust[i] == 0:
-              bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(questType.getType(Sql.quest_reward_type[i],cfg.language)) + "</b>\n├ " + task
+              bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(questType.getType(Sql.quest_reward_type[i],cfg.language))
               if Sql.quest_stardust[i-1] != Sql.quest_stardust[i] and not Sql.quest_stardust[i] == Sql.quest_stardust[i+1]:
-                msg = "\n" + str(bolt_line) + "\n└ "
+                msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                 msg2= "\n"
               elif Sql.quest_stardust[i-1] != Sql.quest_stardust[i]:
                 if not Sql.quest_task[i] == Sql.quest_task[i+1]:
-                  msg = "\n" + str(bolt_line) + "\n└ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                   msg2 = "\n"
                 else:
-                  msg = "\n" + str(bolt_line) + "\n├ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
                   msg2 = ""
               elif not Sql.quest_task[i-1] == Sql.quest_task[i]:
                 if not Sql.quest_task[i] == Sql.quest_task[i+1]:
-                  msg = "\n" + str(bolt_line) + "\n└ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                   msg2 = "\n"
                 else:
-                  msg = "\n" + str(bolt_line) + "\n├ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
                   msg2 = ""
               else:
                 if not Sql.quest_stardust[i] == Sql.quest_stardust[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
@@ -73,23 +73,23 @@ class createMessage():
             
             ## ITEM
             elif Sql.quest_item_id[i] in (item):
-              bolt_line = quest.getItem(Sql.quest_item_id[i],"icon") + " <b>" + str(Sql.quest_item_amount[i]) + " " + str(quest.getItem(Sql.quest_item_id[i],cfg.language)) + "</b>\n├ " + task
+              bolt_line = quest.getItem(Sql.quest_item_id[i],"icon") + " <b>" + str(Sql.quest_item_amount[i]) + " " + str(quest.getItem(Sql.quest_item_id[i],cfg.language))
               if Sql.quest_item_id[i-1] != Sql.quest_item_id[i] and not Sql.quest_item_id[i] == Sql.quest_item_id[i+1]:
-                msg = "\n" + str(bolt_line) + "\n└ "
+                msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                 msg2= "\n"
               elif Sql.quest_item_id[i-1] != Sql.quest_item_id[i]:
                 if not Sql.quest_task[i] == Sql.quest_task[i+1]:
-                  msg = "\n" + str(bolt_line) + "\n└ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                   msg2 = "\n"
                 else:
-                  msg = "\n" + str(bolt_line) + "\n├ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
                   msg2 = ""
               elif not Sql.quest_task[i-1] == Sql.quest_task[i]:
                 if not Sql.quest_task[i] == Sql.quest_task[i+1]:
-                  msg = "\n" + str(bolt_line) + "\n└ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                   msg2 = "\n"
                 else:
-                  msg = "\n" + str(bolt_line) + "\n├ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
                   msg2 = ""
               else:
                 if not Sql.quest_item_id[i] == Sql.quest_item_id[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
@@ -101,23 +101,23 @@ class createMessage():
             
             ## POKEMON
             elif Sql.quest_pokemon_id[i] in (pokemon):
-              bolt_line = "\U0001F47E <b>" + str(quest.getPokemon(Sql.quest_pokemon_id[i],cfg.language)) + "</b>\n├ " + task
+              bolt_line = "\U0001F47E <b>" + str(quest.getPokemon(Sql.quest_pokemon_id[i],cfg.language))
               if Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i] and not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1]:
-                msg = "\n" + str(bolt_line) + "\n└ "
+                msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                 msg2= "\n"
               elif Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i]:
                 if not Sql.quest_task[i] == Sql.quest_task[i+1]:
-                  msg = "\n" + str(bolt_line) + "\n└ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                   msg2 = "\n"
                 else:
-                  msg = "\n" + str(bolt_line) + "\n├ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
                   msg2 = ""
               elif not Sql.quest_task[i-1] == Sql.quest_task[i]:
                 if not Sql.quest_task[i] == Sql.quest_task[i+1]:
-                  msg = "\n" + str(bolt_line) + "\n└ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                   msg2 = "\n"
                 else:
-                  msg = "\n" + str(bolt_line) + "\n├ "
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
                   msg2 = ""
               else:
                 if not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
@@ -128,7 +128,7 @@ class createMessage():
                   msg2= ""
 
             #singlemessage
-            singlemessage = bolt_line.replace("├ ", "\U0001F4DC ")
+            singlemessage = bolt_line + "</b>\n\U0001F4DC " + task
             gmaps = "\n\n\U0001f4cd" + "<a href='https://maps.google.de/?q=" + str(Sql.latitude[i]) + "," + str(Sql.longitude[i]) + "'><b>" + name + "</b></a>\n" + singlemessage
 
             if send.list_output.__contains__(stop):
@@ -142,7 +142,7 @@ class createMessage():
             else:
               if cfg.singlechatId:
                 print("===> found [" + str(i) + "]")
-                id = send.send(gmaps,stop)
+                id = send.send(Sql.latitude[i],Sql.longitude[i],bolt_line.replace("<b>", ""),name,gmaps,stop,cfg.venue)
             if cfg.singlechatId:
               linked = cfg.singlechatUrl + "/" + str(id)
             else:
