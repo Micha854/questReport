@@ -5,7 +5,7 @@ import datetime
 
 class createMessage():
 
-  def create(self,Sql,send,sleep,cfg,gmt,values):
+  def create(self,Sql,send,sleep,cfg,values):
     questType = questRewardTypes.rewardType()
     quest = questReward.reward()
     overview = ""
