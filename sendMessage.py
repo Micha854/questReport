@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import telebot
+import time
 
 class sendMessage():
   chatID = 0
@@ -9,13 +10,17 @@ class sendMessage():
   list_message_ID = []
   list_lists_ID = []
   overview_old = ""
+  overview_old2= ""
   overviewId = 0
+  overviewId2= 0
   areaName = ""
   
-  def send(self,gmaps,stop):
+  def send(self,latitude,longitude,bolt_line,normal_line,gmaps,stop,venue):
     try:
-      #id = self.bot.send_venue(self.singlechatID,latitude,longitude,bolt_line,normal_line,disable_notification=True)
-      id = self.bot.send_message(self.singlechatID,gmaps,parse_mode='HTML',disable_web_page_preview=False,disable_notification=True)
+      if venue == True:
+        id = self.bot.send_venue(self.singlechatID,latitude,longitude,bolt_line,normal_line,disable_notification=True)
+      else:
+        id = self.bot.send_message(self.singlechatID,gmaps,parse_mode='HTML',disable_web_page_preview=False,disable_notification=True)
       self.list_output.append(stop)
       self.list_message_ID.append(id.message_id)
       outF = open(self.areaName+"output.txt","w")
@@ -23,41 +28,74 @@ class sendMessage():
       outF.close()
       return id.message_id
     except:
-      print(self.areaName+" Nachricht konnte nicht versendet werden")
+      print(".................... wait 30 seconds, too many messages")
+      sleep = time.sleep(30)
+      return sleep
   
-  def sendOverview(self,message):
-    if message == "":
-      message = "Keine Quest gefunden"
-    if not message == self.overview_old:
-      if len(message) <= len(self.overview_old):
+  def sendOverview(self,message,message2,text):
+    print("\nmessage1 ==> " + str(len(message)) + " (" + str(len(self.overview_old)) + ")")
+    print("message2 ==> " + str(len(message2)) + " (" + str(len(self.overview_old2)) + ")")
+    
+    ## Wenn der Quest Zähler sich erhöht, liste 1 nur editieren
+    if len(self.overview_old) == len(message) and not message == self.overview_old:
+      self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True)
+      self.overview_old = message
+
+    ## liste 1 & 2 haben sich nicht verändert ==> return
+    if self.overview_old == message and self.overview_old2 == message2:
+      return
+
+    ## alte liste 2 ist vorhanden, hat aber keinen inhalt mehr ==> löschen
+    if not message2 and self.overview_old2:
+      try:
+        self.bot.delete_message(self.chatID,self.overviewId2.message_id)
+        self.list_lists_ID.remove(self.overviewId2.message_id)
+        self.overview_old2 = message2
+      except:
+        print("Liste 2 konnte nicht entfernt werden !")
+
+    ## liste 1 oder 2 hat sich verändert ==> neu senden
+    try:
+      if not message:
+        message = text
+        self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True)
+        self.overview_old = ""
+        self.clearOldList(self.areaName,self.list_lists_ID)
+        return
+      self.bot.delete_message(self.chatID,self.overviewId.message_id)
+      self.list_lists_ID.remove(self.overviewId.message_id)
+      self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True)
+      self.list_lists_ID.append(self.overviewId.message_id)
+      self.overview_old = message
+    except:
+      try:
+        self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True)
+        self.list_lists_ID.append(self.overviewId.message_id)
+        self.overview_old = message
+      finally:
+        print("no message")
+        self.overview_old = ""
+        self.clearOldList(self.areaName,self.list_lists_ID)
+        return self.overview_old
+    
+    ## liste 2 versenden wenn vorhanden
+    if message2:
+      try:
+        self.bot.delete_message(self.chatID,self.overviewId2.message_id)
+        self.list_lists_ID.remove(self.overviewId2.message_id)
+        self.overviewId2 = self.bot.send_message(self.chatID,message2,parse_mode='HTML',disable_web_page_preview=True)
+        self.list_lists_ID.append(self.overviewId2.message_id)
+        self.overview_old2 = message2
+      except:
         try:
-          self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True) ##Nachricht 
-          self.overview_old = message
-        except:
-          try:
-            print(self.areaName+" Konnte aber nicht editiern")
-            self.bot.delete_message(self.chatID,self.overviewId.message_id)
-            self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML')
-            self.list_lists_ID.append(self.overviewId.message_id)
-            self.clearOldList(self.areaName,self.list_lists_ID)
-            self.overview_old = message
-          except:
-            print(self.areaName+" Nachricht konnte nicht editiert werden")    
-      else:
-        try: 
-          self.bot.delete_message(self.chatID,self.overviewId.message_id)
-          self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML')
-          self.list_lists_ID.append(self.overviewId.message_id)
-          self.clearOldList(self.areaName,self.list_lists_ID)
-          self.overview_old = message
-        except:
-          try:
-            self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True,disable_notification=False)
-            self.list_lists_ID.append(self.overviewId.message_id)
-            self.clearOldList(self.areaName,self.list_lists_ID)
-            self.overview_old = message
-          except:
-            print(self.areaName+" Nachricht konnte nicht gesendet werden")
+          self.overviewId2 = self.bot.send_message(self.chatID,message2,parse_mode='HTML',disable_web_page_preview=True)
+          self.list_lists_ID.append(self.overviewId2.message_id)
+          self.overview_old2 = message2
+        finally:
+          print("no message_2")
+    
+    self.clearOldList(self.areaName,self.list_lists_ID)
+
    
   def clearOldList (self, areaName, list_lists_ID):
     filename_list_lists_ID = self.areaName+"lists.txt"

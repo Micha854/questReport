@@ -11,14 +11,6 @@ import clear
 import os
 import json
 
-# set the correct gmt timezone
-from datetime import datetime
-millis = 1288483950000
-ts = millis * 1e-3
-utc_offset = datetime.fromtimestamp(ts) - datetime.utcfromtimestamp(ts)
-offset = str(utc_offset)
-gmt = int(offset[0])
-
 ####Lade das Configfile
 cfg = config.Config()
 try:
@@ -50,5 +42,5 @@ while 1 == 1:
   Sql.startSQL(cfg,values)
   send.clearOutputList(Sql.pokestop_id)
   create = createMessage.createMessage()
-  create.create(Sql,send,cfg.sleepTime,cfg,gmt,values)
+  create.create(Sql,send,cfg.sleepTime,cfg,values)
   time.sleep(int(cfg.sleepTime))

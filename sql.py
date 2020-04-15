@@ -39,11 +39,11 @@ class Sql():
     quest = questReward.reward()
 
     item = values["item"]
-    item.sort(key=lambda x: quest.getItem(value=x, icon="icon"))
+    item.sort(key=lambda x: quest.getItem(value=x, option="icon"))
     sort_item = str(item).replace("[", "").replace("]", "")
 
     pokemon = values["pokemon"]
-    pokemon.sort(key=lambda x: quest.getPokemon(value=x))
+    pokemon.sort(key=lambda x: quest.getPokemon(value=x, language=cfg.language))
     sort_pokemon = str(pokemon).replace("[", "").replace("]", "")
 
     if sort_item:

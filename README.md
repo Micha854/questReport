@@ -1,6 +1,8 @@
 # questReport
 send a quest report of a list to telegram
 
+languages:  :de:  :us:
+
 #### HELP ON DISCORD: https://discord.gg/RDmxphS
 
 ## Install
