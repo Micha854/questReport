@@ -62,36 +62,39 @@ class sendMessage():
         self.overview_old = ""
         self.clearOldList(self.areaName,self.list_lists_ID)
         return
-      self.bot.delete_message(self.chatID,self.overviewId.message_id)
-      self.list_lists_ID.remove(self.overviewId.message_id)
-      self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True)
-      self.list_lists_ID.append(self.overviewId.message_id)
+      if self.chatID != self.singlechatID:
+        self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True)
+      else:
+        self.bot.delete_message(self.chatID,self.overviewId.message_id)
+        self.list_lists_ID.remove(self.overviewId.message_id)
+        self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True)
+        self.list_lists_ID.append(self.overviewId.message_id)
       self.overview_old = message
     except:
       try:
         self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True)
         self.list_lists_ID.append(self.overviewId.message_id)
         self.overview_old = message
-      finally:
+      except:
         print("no message")
-        self.overview_old = ""
-        self.clearOldList(self.areaName,self.list_lists_ID)
-        return self.overview_old
     
     ## liste 2 versenden wenn vorhanden
-    if message2:
+    if message2 and self.overview_old:
       try:
-        self.bot.delete_message(self.chatID,self.overviewId2.message_id)
-        self.list_lists_ID.remove(self.overviewId2.message_id)
-        self.overviewId2 = self.bot.send_message(self.chatID,message2,parse_mode='HTML',disable_web_page_preview=True)
-        self.list_lists_ID.append(self.overviewId2.message_id)
+        if self.chatID != self.singlechatID:
+          self.bot.edit_message_text(message2,chat_id=self.chatID, message_id=self.overviewId2.message_id, parse_mode='HTML',disable_web_page_preview=True)
+        else:
+          self.bot.delete_message(self.chatID,self.overviewId2.message_id)
+          self.list_lists_ID.remove(self.overviewId2.message_id)
+          self.overviewId2 = self.bot.send_message(self.chatID,message2,parse_mode='HTML',disable_web_page_preview=True)
+          self.list_lists_ID.append(self.overviewId2.message_id)
         self.overview_old2 = message2
       except:
         try:
           self.overviewId2 = self.bot.send_message(self.chatID,message2,parse_mode='HTML',disable_web_page_preview=True)
           self.list_lists_ID.append(self.overviewId2.message_id)
           self.overview_old2 = message2
-        finally:
+        except:
           print("no message_2")
     
     self.clearOldList(self.areaName,self.list_lists_ID)
