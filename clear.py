@@ -7,7 +7,7 @@ class Clear():
     
     ## delete old overviewLists
     try:
-      f = open(cfg.areaName+"lists.txt", "r")
+      f = open(cfg.areaName+cfg.areaNumber+"/lists.txt", "r")
     except:
       return
     oldMessages = f.read()

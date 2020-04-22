@@ -88,7 +88,7 @@ class Sql():
       self.quest_item_amount.append("end")
 
     except Exception as e:
-      outF = open(cfg.areaName+"error.txt","w")
+      outF = open(cfg.areaName+cfg.areaNumber+"/error.txt","w")
       ausgabe = "Passierte in der SQL.py\n"
       ausgabe += "pokestop_id: " + str(self.pokestop_id.__len__) + "\n"
       ausgabe += "name: " + str(self.name.__len__) + "\n"

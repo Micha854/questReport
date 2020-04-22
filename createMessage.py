@@ -28,7 +28,7 @@ class createMessage():
     puffer= 15 # split when reached in group 
     
     now = datetime.datetime.now()
-    print("####################==========\\ *** Quest *** Update " + cfg.areaName + " " + now.strftime("%m/%d/%Y, %H:%M:%S") + " /==========####################\n")
+    print("####################==========\\ *** Quest *** Update " + cfg.areaName+cfg.areaNumber + " " + now.strftime("%m/%d/%Y, %H:%M:%S") + " /==========####################\n")
 
     print("stardust melden: " + str(stardust))
     print("item ids melden: " + str(item))
@@ -132,7 +132,7 @@ class createMessage():
             gmaps = "\n\n\U0001f4cd" + "<a href='https://maps.google.de/?q=" + str(Sql.latitude[i]) + "," + str(Sql.longitude[i]) + "'><b>" + name + "</b></a>\n" + singlemessage
 
             if send.list_output.__contains__(stop):
-              f = open(cfg.areaName+"output.txt", "r")
+              f = open(cfg.areaName+cfg.areaNumber+"/output.txt", "r")
                 # Split the string based on space delimiter 
               list_string = f.read()
               list_string = list_string[1:len(list_string)-1]
@@ -183,7 +183,7 @@ class createMessage():
       #f.close()
       
     except Exception as e:
-        outF = open(Sql.areaName+"error.txt","w")
+        outF = open(cfg.areaName+cfg.areaNumber+"/error.txt","w")
         ausgabe = "Passierte in der CreateMessage.py\n"
         ausgabe += "pokestop_id: " + str(Sql.pokestop_id.__len__) + "\n"
         ausgabe += "name: " + str(Sql.name.__len__) + "\n"

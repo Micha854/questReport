@@ -18,8 +18,14 @@ try:
 except:
   cfg.readConfig("config.ini")
 
-if not os.path.exists(cfg.areaName+"values.json"):
-  f = open(cfg.areaName+"values.json", "w")
+if not os.path.exists(cfg.areaName+cfg.areaNumber):
+    os.mkdir(cfg.areaName+cfg.areaNumber)
+    print("Temp Directory " , cfg.areaName+cfg.areaNumber ,  " Created ")
+else:    
+    print("Temp Directory " , cfg.areaName+cfg.areaNumber ,  " already exists")
+
+if not os.path.exists(cfg.areaName+cfg.areaNumber+"/values.json"):
+  f = open(cfg.areaName+cfg.areaNumber+"/values.json", "w")
   f.write("{\n")
   f.write('   "stardust": [1500,1000,500],\n')
   f.write('   "item": [502,503,504,708,1301],\n')
@@ -31,11 +37,11 @@ clear = clear.Clear()
 clear.clear(cfg.token,cfg.chatId,cfg.singlechatId,cfg)
 
 send = sendMessage.sendMessage()
-send.setConfig(cfg.token,cfg.singlechatId,cfg.chatId,cfg.areaName)
-sys.stdout.write("\x1b]2;%s\x07" % cfg.areaName)
+send.setConfig(cfg.token,cfg.singlechatId,cfg.chatId,cfg.areaName,cfg.areaNumber)
+sys.stdout.write("\x1b]2;%s\x07" % cfg.areaName+cfg.areaNumber)
 
 while 1 == 1:
-  with open(cfg.areaName+"values.json") as input:
+  with open(cfg.areaName+cfg.areaNumber+"/values.json") as input:
     values = json.load(input)
 
   Sql = sql.Sql()

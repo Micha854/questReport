@@ -20,6 +20,7 @@ class Config():
   language = ""
   venue = bool
   areaName = ""
+  areaNumber = ""
   min_latitude = ""
   max_latitude = ""
   min_longitude = ""
@@ -45,6 +46,8 @@ class Config():
     self.venue = parser.getboolean('Option', 'venue')
 
     self.areaName = parser.get('Geofence', 'areaName')
+    self.areaNumber = parser.get('Geofence', 'areaNumber')
+    
     self.min_latitude = parser.get('Geofence', 'minLat')
     self.max_latitude = parser.get('Geofence', 'maxLat')
     self.min_longitude = parser.get('Geofence', 'minLon')

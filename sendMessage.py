@@ -23,7 +23,7 @@ class sendMessage():
         id = self.bot.send_message(self.singlechatID,gmaps,parse_mode='HTML',disable_web_page_preview=False,disable_notification=True)
       self.list_output.append(stop)
       self.list_message_ID.append(id.message_id)
-      outF = open(self.areaName+"output.txt","w")
+      outF = open(self.areaName+cfg.areaNumber+"/output.txt","w")
       outF.writelines(str(self.list_message_ID))
       outF.close()
       return id.message_id
@@ -60,7 +60,7 @@ class sendMessage():
         message = text
         self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True)
         self.overview_old = ""
-        self.clearOldList(self.areaName,self.list_lists_ID)
+        self.clearOldList(self.areaName,self.areaNumber,self.list_lists_ID)
         return
       if self.chatID != self.singlechatID:
         self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True)
@@ -97,33 +97,34 @@ class sendMessage():
         except:
           print("no message_2")
     
-    self.clearOldList(self.areaName,self.list_lists_ID)
+    self.clearOldList(self.areaName,self.areaNumber,self.list_lists_ID)
 
    
-  def clearOldList (self, areaName, list_lists_ID):
-    filename_list_lists_ID = self.areaName+"lists.txt"
+  def clearOldList (self, areaName, areaNumber, list_lists_ID):
+    filename_list_lists_ID = self.areaName+self.areaNumber+"/lists.txt"
     outF = open(filename_list_lists_ID,"w")
     outF.writelines(str(self.list_lists_ID))
     outF.close()
 
   def clearOutputList(self,encounter):
     i = 0
-    print(self.areaName+" Checke Outputliste")
+    print(self.areaName+self.areaNumber+" Checke Outputliste")
     for encount in self.list_output:
       if not encounter.__contains__(encount):
         try:
-          print(self.areaName+" Entferne Nachricht")
+          print(self.areaName+self.areaNumber+" Entferne Nachricht")
           self.bot.delete_message(self.singlechatID,self.list_message_ID[i])
           self.list_message_ID.__delitem__(i)
           self.list_output.__delitem__(i)
         except:
-          print(self.areaName+" Nachricht konnte nicht entfernt werden")
+          print(self.areaName+self.areaNumber+" Nachricht konnte nicht entfernt werden")
       i +=1
-    outF = open(self.areaName+"output.txt","w")
+    outF = open(self.areaName+self.areaNumber+"/output.txt","w")
     outF.writelines(str(self.list_message_ID))
     outF.close()
 
-  def setConfig(self,token,singlechatID,chatID,areaName):
+  def setConfig(self,token,singlechatID,chatID,areaName,areaNumber):
+    self.areaNumber = areaNumber
     self.areaName = areaName
     self.singlechatID = singlechatID
     self.chatID = chatID
