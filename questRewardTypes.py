@@ -5,43 +5,43 @@ class rewardType():
     switch = {
       0: {
           "de": "Nicht festgelegt",
-          "en": "",
-          "fr": ""
+          "en": "Not fixed",
+          "fr": "Non précisé"
         },
       1: {
           "de": "Erfahrung",
-          "en": "",
-          "fr": ""
+          "en": "Experience",
+          "fr": "L'expérience"
         },
       2: {
           "de": "item",
-          "en": "",
-          "fr": ""
+          "en": "Item",
+          "fr": "Item"
         },
       3: {
           "de": "Sternenstaub",
           "en": "Stardust",
-          "fr": ""
+          "fr": "Stardust"
         },
       4: {
           "de": "Beeren",
-          "en": "",
-          "fr": ""
+          "en": "Berries",
+          "fr": "Baies"
         },
       5: {
           "de": "Avatar Kleidung",
-          "en": "",
-          "fr": ""
+          "en": "Avatar Clothes",
+          "fr": "Vêtements d'avatar"
         },
       6: {
           "de": "Suche",
-          "en": "",
-          "fr": ""
+          "en": "Search",
+          "fr": "Recherche"
         },
       7: {
           "de": "Monsterbegegnung",
-          "en": "",
-          "fr": ""
+          "en": "monster encounter",
+          "fr": "rencontre monstre"
         }
     }
     #return switch.get(value,lambda: str(value))

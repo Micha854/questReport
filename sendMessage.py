@@ -14,6 +14,7 @@ class sendMessage():
   overviewId = 0
   overviewId2= 0
   areaName = ""
+  areaNumber = ""
   
   def send(self,latitude,longitude,bolt_line,normal_line,gmaps,stop,venue):
     try:

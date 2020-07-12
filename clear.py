@@ -22,7 +22,7 @@ class Clear():
 
     ## delete old venue messages
     try:
-      f = open(cfg.areaName+"output.txt", "r")
+      f = open(cfg.areaName+cfg.areaNumber+"/output.txt", "r")
     except:
       return
     oldMessages = f.read()

@@ -6,349 +6,349 @@ class reward():
         1: {
           "de": "Pok\u00E9ball",
           "en": "Pok\u00E9 ball",
-          "fr": "",
+          "fr": "Poké Ball",
           "icon": "\U0001F534"
         },
         2: {
           "de": "Superball",
           "en": "Great ball",
-          "fr": "",
+          "fr": "Super Ball",
           "icon": "\U0001F535"
         },
         3: {
           "de": "Hyperball",
           "en": "Ultra ball",
-          "fr": "",
+          "fr": "Hyper Ball",
           "icon": "\U0001F7E1"
         },
         4: {
           "de": "Masterball",
           "en": "Master ball",
-          "fr": "",
+          "fr": "Master Ball",
           "icon": "\U0001F7E3"
         },
         5: {
           "de": "Premierball",
           "en": "Premier ball",
-          "fr": "",
+          "fr": "Honor Ball",
           "icon": "\U000026AA"
         },
         101: {
           "de": "Trank",
           "en": "Potion",
-          "fr": "",
+          "fr": "Potion",
           "icon": "\U0001F964"
         },
         102: {
           "de": "Supertrank",
           "en": "Super Potion",
-          "fr": "",
+          "fr": "Super Potion",
           "icon": "\U0001F964"
         },
         103: {
           "de": "Hypertrank",
           "en": "Hyper Potion",
-          "fr": "",
+          "fr": "Hyper Potion",
           "icon": "\U0001F964"
         },
         104: {
           "de": "Top-Trank",
           "en": "Max Potion",
-          "fr": "",
+          "fr": "Potion Max",
           "icon": "\U0001F964"
         },
         201: {
           "de": "Beleber",
           "en": "Revive",
-          "fr": "",
+          "fr": "Rappel",
           "icon": "\U0001F4AB"
         },
         202: {
           "de": "Top-Beleber",
           "en": "Max Revive",
-          "fr": "",
+          "fr": "Rappel Max",
           "icon": "\U0001F4AB"
         },
         301: {
           "de": "Gl\u00FCcksei",
           "en": "Lucky Egg",
-          "fr": "",
+          "fr": "Œuf Chance",
           "icon": "\U0001F95A"
         },
         401: {
           "de": "Rauch",
           "en": "Incense",
-          "fr": "",
+          "fr": "Encens",
           "icon": "\U0001F32A"
         },
         402: {
           "de": "Incense Spicy",
           "en": "Incense Spicy",
-          "fr": "",
+          "fr": "Encens Spicy",
           "icon": "\U0001F32A"
         },
         403: {
           "de": "Incense Cool",
           "en": "Incense Cool",
-          "fr": "",
+          "fr": "Encens Cool",
           "icon": "\U0001F32A"
         },
         404: {
           "de": "Incense Floral",
           "en": "Incense Floral",
-          "fr": "",
+          "fr": "Encens Floral",
           "icon": "\U0001F32A"
         },
         501: {
           "de": "Lockmodul",
           "en": "Lure Module",
-          "fr": "",
+          "fr": "Module Leurre",
           "icon": "\U0001F39F"
         },
         502: {
           "de": "Gletscher-Lockmodul",
           "en": "Glacial Lure Module",
-          "fr": "",
+          "fr": "Leurre Glacial",
           "icon": "\U00002744"
         },
         503: {
           "de": "Moos-Lockmodul",
           "en": "Mossy Lure Module",
-          "fr": "",
+          "fr": "Leurre Moussu",
           "icon": "\U0001f33f"
         },
         504: {
           "de": "Magnet-Lockmodul",
           "en": "Magnetic Lure Module",
-          "fr": "",
+          "fr": "Leurre Magnétique",
           "icon": "\U0001F9F2"
         },
         602: {
           "de": "X Attack",
           "en": "X Attack",
-          "fr": "",
+          "fr": "Attaque +",
           "icon": "\U0001F4D5"
         },
         603: {
           "de": "X Defense",
           "en": "X Defense",
-          "fr": "",
+          "fr": "Défense +",
           "icon": "\U0001F4D8"
         },
         604: {
           "de": "X Miracle",
           "en": "X Miracle",
-          "fr": "",
+          "fr": "X Miracle",
           "icon": "\U0001F4D7"
         },
         701: {
           "de": "Himmihbeere",
           "en": "Razz Berry",
-          "fr": "",
+          "fr": "Baie Framby",
           "icon": "\U0001F347"
         },
         702: {
           "de": "Bluk Berry",
           "en": "Bluk Berry",
-          "fr": "",
+          "fr": "Baie Remu",
           "icon": "\U0001F347"
         },
         703: {
           "de": "Nanabbeere",
           "en": "Nanab Berry",
-          "fr": "",
+          "fr": "Baie Nanab",
           "icon": "\U0001F34C"
         },
         704: {
           "de": "Wepar Berry",
           "en": "Wepar Berry",
-          "fr": "",
+          "fr": "Baie Repoi",
           "icon": "\U0001FAD0"
         },
         705: {
           "de": "Sananabeere",
           "en": "Pinap Berry",
-          "fr": "",
+          "fr": "Baie Nanana",
           "icon": "\U0001F34D"
         },
         706: {
           "de": "Goldene Himmihbeere",
           "en": "Golden Razz",
-          "fr": "",
+          "fr": "Baie Framby dorée",
           "icon": "\U0001F347"
         },
         707: {
           "de": "Golden Nanab",
           "en": "Golden Pinap",
-          "fr": "",
+          "fr": "Baie Nanab dorée",
           "icon": "\U0001F34C"
         },
         708: {
           "de": "Silberne Sananabeere",
           "en": "Silver Pinap",
-          "fr": "",
+          "fr": "Baie Nanana argentée",
           "icon": "\U0001F34D"
         },
         709: {
           "de": "Poffin",
           "en": "Poffin",
-          "fr": "",
+          "fr": "Poffin",
           "icon": "\U0001F954"
         },
         801: {
           "de": "Camera",
           "en": "Camera",
-          "fr": "",
+          "fr": "Appareil photo",
           "icon": "\U0001F4F7"
         },
         901: {
           "de": "Brutmaschine",
           "en": "Unlimited Incubator",
-          "fr": "",
+          "fr": "Incubateur",
           "icon": "\U0001F96B"
         },
         902: {
           "de": "Brutmaschine",
           "en": "Incubator",
-          "fr": "",
+          "fr": "Incubateur",
           "icon": "\U0001F96B"
         },
         903: {
           "de": "Super Brutmaschine",
           "en": "Super Incubator",
-          "fr": "",
+          "fr": "Super Incubateur",
           "icon": "\U0001F96B"
         },
         1001: {
           "de": "Pok\u00E9mon Storage Upgrade",
           "en": "Pok\u00E9mon Storage Upgrade",
-          "fr": "",
+          "fr": "stockage des Pokémon",
           "icon": "\U0001F392"
         },
         1002: {
           "de": "Item Storage Upgrade",
           "en": "Item Storage Upgrade",
-          "fr": "",
+          "fr": "stockage du sac",
           "icon": "\U0001F4DF"
         },
         1101: {
           "de": "Sonnenstein",
           "en": "Sun Stone",
-          "fr": "",
+          "fr": "Pierre Soleil",
           "icon": "\U0001F525"
         },
         1102: {
           "de": "King-Stein",
           "en": "Kings Rock",
-          "fr": "",
+          "fr": "Roche Royale",
           "icon": "\U0001F451"
         },
         1103: {
           "de": "Metallmantel",
           "en": "Metal Coat",
-          "fr": "",
+          "fr": "Peau Métal",
           "icon": "\U0001F96B"
         },
         1104: {
           "de": "Drachenhaut",
           "en": "Dragon Scale",
-          "fr": "",
+          "fr": "Écaille Draco",
           "icon": "\U0001F4A7"
         },
         1105: {
           "de": "Item Upgrade",
           "en": "Item Upgrade",
-          "fr": "",
+          "fr": "Améliorator",
           "icon": "\U0001F3F7"
         },
         1106: {
           "de": "Sinnoh-Stein",
           "en": "Sinnoh Stone",
-          "fr": "",
+          "fr": "Pierre Sinnoh",
           "icon": "\U0001F48E"
         },
         1107: {
           "de": "Unovah-Stein",
           "en": "Unova Stone",
-          "fr": "",
+          "fr": "Pierre Unys",
           "icon": "\U0001F518"
         },
         1201: {
           "de": "Sofort TM",
           "en": "Fast TM",
-          "fr": "",
+          "fr": "CT Attaque Immédiate",
           "icon": ""
         },
         1202: {
           "de": "Lade TM",
           "en": "Charge TM",
-          "fr": "",
+          "fr": "CT Attaque Chargée",
           "icon": ""
         },
         1301: {
           "de": "Sonderbonbon",
           "en": "Rare Candy",
-          "fr": "",
+          "fr": "Super Bonbon",
           "icon": "\U0001F36C"
         },
         1401: {
           "de": "Raid Pass",
           "en": "Free Raid Pass",
-          "fr": "",
+          "fr": "Passe de Raid",
           "icon": "\U0001F3AB"
         },
         1402: {
           "de": "Paid Raid Pass",
           "en": "Paid Raid Pass",
-          "fr": "",
+          "fr": "Passe de Raid Premium",
           "icon": "\U0001F3AB"
         },
         1403: {
           "de": "EX Raid Pass",
           "en": "EX Raid Pass",
-          "fr": "",
+          "fr": "Passe de Raid EX",
           "icon": "\U0001F3AB"
         },
         1404: {
           "de": "Sternenst\u00FCck",
           "en": "Star Piece",
-          "fr": "",
+          "fr": "Morceau d’Étoile",
           "icon": "\U0001F31F"
         },
         1405: {
           "de": "Geschenk",
           "en": "Gift",
-          "fr": "",
+          "fr": "Cadeau",
           "icon": "\U0001F381"
         },
         1406: {
           "de": "Team-Medaillon",
           "en": "Team Medallion",
-          "fr": "",
+          "fr": "Medallón de equipos",
           "icon": "\U0001F396"
         },
         1501: {
           "de": "Mysteriöses Teil",
           "en": "Mysterious Component",
-          "fr": "",
+          "fr": "Élément mystérieux",
           "icon": "\U0001F39E"
         },
         1502: {
           "de": "Rocket-Radar",
           "en": "Leader Map",
-          "fr": "",
+          "fr": "Radar Rocket",
           "icon": "\U0001F4BF"
         },
         1503: {
           "de": "Super-Rocket-Radar",
           "en": "Giovanni Map",
-          "fr": "",
+          "fr": "Super Radar Rocket",
           "icon": "\U0001F4C0"
         },
         1600: {
           "de": "Ticket",
           "en": "Global Event Ticket",
-          "fr": "",
+          "fr": "Mondiale",
           "icon": "\U0001F3AB"
         }
     }

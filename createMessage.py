@@ -209,7 +209,7 @@ class createMessage():
       },
       "scanned": {
         "de": "Stops wurden gescannt",
-        "en": "Stops were scanned",
+        "en": "stops were scanned",
         "fr": "Les arrêts ont été scannés"
       },
       "Monday": {
