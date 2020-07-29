@@ -190,7 +190,7 @@ class reward():
           "icon": "\U0001F34D"
         },
         709: {
-          "de": "Poffin",
+          "de": "Knursp",
           "en": "Poffin",
           "fr": "Poffin",
           "icon": "\U0001F954"
