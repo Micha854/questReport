@@ -1,7 +1,17 @@
 import MySQLdb
 import time
-import questReward
 import json
+
+class questReward():
+  def getItem(self,value,language):
+    data = open('json/QuestReward.json').read()
+    switch = json.loads(data)
+    return switch[str(value)][language]
+
+  def getPokemon(self,value,language):
+    data = open('json/Pokemon.json').read()
+    switch = json.loads(data)
+    return switch[str(value)][language]
 
 class Sql():
   pokestop_id = []
@@ -14,6 +24,8 @@ class Sql():
   quest_reward_type = []
   quest_item_id = []
   quest_item_amount = []
+  quest_pokemon_form_id = []
+  quest_pokemon_costume_id = []
 
   def startSQL(self,cfg, values):
     #Verbindungsaufbau zur MySQL-Datenbank
@@ -34,12 +46,14 @@ class Sql():
     self.quest_reward_type.clear()
     self.quest_item_id.clear()
     self.quest_item_amount.clear()
+    self.quest_pokemon_form_id.clear()
+    self.quest_pokemon_costume_id.clear()
 
     # Sortieren anhand der Pokemon Namen
-    quest = questReward.reward()
+    quest = questReward()
 
     item = values["item"]
-    item.sort(key=lambda x: quest.getItem(value=x, option="icon"))
+    item.sort(key=lambda x: quest.getItem(value=x, language="icon"))
     sort_item = str(item).replace("[", "").replace("]", "")
 
     pokemon = values["pokemon"]
@@ -57,7 +71,7 @@ class Sql():
       pokemon_sort = "q.quest_pokemon_id DESC"
     
     # Abfragen der Daten aus der Datenbank
-    cursor.execute("SELECT p.pokestop_id, p.name, p.latitude, p.longitude, q.quest_task, q.quest_stardust, q.quest_pokemon_id, q.quest_reward_type, q.quest_item_id, q.quest_item_amount  FROM `trs_quest` q INNER JOIN pokestop p ON q.GUID = p.pokestop_id WHERE FROM_UNIXTIME(quest_timestamp,'%Y-%m-%d') = CURDATE() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + "ORDER BY q.quest_stardust DESC, " + pokemon_sort + ", " + item_sort + ", q.quest_item_amount DESC, q.quest_task, p.name")
+    cursor.execute("SELECT p.pokestop_id, p.name, p.latitude, p.longitude, q.quest_task, q.quest_stardust, q.quest_pokemon_id, q.quest_reward_type, q.quest_item_id, q.quest_item_amount, q.quest_pokemon_form_id, q.quest_pokemon_costume_id FROM `trs_quest` q INNER JOIN pokestop p ON q.GUID = p.pokestop_id WHERE FROM_UNIXTIME(quest_timestamp,'%Y-%m-%d') = CURDATE() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + "ORDER BY q.quest_stardust DESC, " + pokemon_sort + ", " + item_sort + ", q.quest_item_amount DESC, q.quest_task, p.name")
     #all = cursor.fetchall()
     all = list(cursor.fetchall())
     
@@ -74,6 +88,8 @@ class Sql():
         self.quest_reward_type.append(all[i][7])
         self.quest_item_id.append(all[i][8])
         self.quest_item_amount.append(all[i][9])
+        self.quest_pokemon_form_id.append(all[i][10])
+        self.quest_pokemon_costume_id.append(all[i][11])
         i +=1
       
       self.pokestop_id.append("end")
@@ -86,6 +102,8 @@ class Sql():
       self.quest_reward_type.append("end")
       self.quest_item_id.append("end")
       self.quest_item_amount.append("end")
+      self.quest_pokemon_form_id.append("end")
+      self.quest_pokemon_costume_id.append("end")
 
     except Exception as e:
       outF = open(cfg.areaName+cfg.areaNumber+"/error.txt","w")
@@ -100,6 +118,8 @@ class Sql():
       ausgabe += "quest_reward_type: " + str(self.quest_reward_type.__len__) + "\n"
       ausgabe += "quest_item_id: " + str(self.quest_item_id.__len__) + "\n"
       ausgabe += "quest_item_amount: " + str(self.quest_item_amount.__len__) + "\n"
+      ausgabe += "quest_pokemon_form_id: " + str(self.quest_pokemon_form_id.__len__) + "\n"
+      ausgabe += "quest_pokemon_costume_id: " + str(self.quest_pokemon_costume_id.__len__) + "\n"
       ausgabe += "Wert i" + str(i) + "\n"
       ausgabe += "All Variable: " + str(len(all))
       outF.writelines(ausgabe + str(e))

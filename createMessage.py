@@ -1,13 +1,10 @@
-import questRewardTypes
-import questReward
+import json
 import time
 import datetime
 
 class createMessage():
 
   def create(self,Sql,send,sleep,cfg,values):
-    questType = questRewardTypes.rewardType()
-    quest = questReward.reward()
     overview = ""
     overview2= ""
     bolt_line= ""
@@ -16,8 +13,8 @@ class createMessage():
     item = values["item"]
     pokemon = values["pokemon"]
 
-    pokemon.sort(key=lambda x: quest.getPokemon(value=x, language=cfg.language))
-    item.sort(key=lambda x: quest.getItem(value=x, option="icon"))
+    pokemon.sort(key=lambda x: self.getPokemon(value=x, language=cfg.language))
+    item.sort(key=lambda x: self.getItem(value=x, language="icon"))
 
     i = 0 # all found today quests
     x = 0 # all filtered quests
@@ -38,14 +35,24 @@ class createMessage():
     try:
       for stop in Sql.pokestop_id:
         name = "Unknown Pokestop" if Sql.name[i] is None else Sql.name[i]
-        task = "\u2757 Aufgabe nicht bekannt" if Sql.quest_task[i] == "" else Sql.quest_task[i]
+        task = Sql.quest_task[i]
+
+        if self.getForm(Sql.form[i],cfg.language):
+          getform = "(" + self.getForm(Sql.form[i],cfg.language) + ")"
+        else:
+          getform = ""
+
+        if self.getCostume(Sql.costume[i],cfg.language):
+          getcostume = "(" + self.getCostume(Sql.costume[i],cfg.language) + ")"
+        else:
+          getcostume = ""
 
         if Sql.pokestop_id:
           if Sql.quest_stardust[i] in (stardust) or Sql.quest_item_id[i] in (item) or Sql.quest_pokemon_id[i] in (pokemon):
 
             ## STARDUST
             if not Sql.quest_stardust[i] == 0:
-              bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(questType.getType(Sql.quest_reward_type[i],cfg.language))
+              bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(self.getType(Sql.quest_reward_type[i],cfg.language))
               if Sql.quest_stardust[i-1] != Sql.quest_stardust[i] and not Sql.quest_stardust[i] == Sql.quest_stardust[i+1]:
                 msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                 msg2= "\n"
@@ -73,7 +80,7 @@ class createMessage():
             
             ## ITEM
             elif Sql.quest_item_id[i] in (item):
-              bolt_line = quest.getItem(Sql.quest_item_id[i],"icon") + " <b>" + str(Sql.quest_item_amount[i]) + " " + str(quest.getItem(Sql.quest_item_id[i],cfg.language))
+              bolt_line = self.getItem(Sql.quest_item_id[i],"icon") + " <b>" + str(Sql.quest_item_amount[i]) + " " + str(self.getItem(Sql.quest_item_id[i],cfg.language))
               if Sql.quest_item_id[i-1] != Sql.quest_item_id[i] and not Sql.quest_item_id[i] == Sql.quest_item_id[i+1]:
                 msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                 msg2= "\n"
@@ -101,7 +108,7 @@ class createMessage():
             
             ## POKEMON
             elif Sql.quest_pokemon_id[i] in (pokemon):
-              bolt_line = "\U0001F47E <b>" + str(quest.getPokemon(Sql.quest_pokemon_id[i],cfg.language))
+              bolt_line = "\U0001F47E <b>" + str(self.getPokemon(Sql.quest_pokemon_id[i],cfg.language) + getform + getcostume)
               if Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i] and not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1]:
                 msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
                 msg2= "\n"
@@ -195,11 +202,59 @@ class createMessage():
         ausgabe += "quest_reward_type: " + str(Sql.quest_reward_type.__len__) + "\n"
         ausgabe += "quest_item_id: " + str(Sql.quest_item_id.__len__) + "\n"
         ausgabe += "quest_item_amount: " + str(Sql.quest_item_amount.__len__) + "\n"
+        ausgabe += "quest_pokemon_form_id: " + str(Sql.quest_pokemon_form_id.__len__) + "\n"
+        ausgabe += "quest_pokemon_costume_id: " + str(Sql.quest_pokemon_costume_id.__len__) + "\n"
         ausgabe += "Wert i" + str(i) + "\n"
         ausgabe += "All Variable: " + str(len(all))
         outF.writelines(ausgabe + str(e))
         outF.close()
 
+  ### get quest reward
+  def getItem(self,value,language):
+    data = open('json/QuestReward.json').read()
+    switch = json.loads(data)
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
+  
+  ### get quest reward type
+  def getType(self,value,language):
+    data = open('json/QuestRewardType.json').read()
+    switch = json.loads(data)
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
+  
+  ### get pokemon name
+  def getPokemon(self,value,language):
+    data = open('json/Pokemon.json').read()
+    switch = json.loads(data)
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
+
+  ### get pokemon form
+  def getForm(self,value,language):
+    data = open('json/Form.json').read()
+    switch = json.loads(data)
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
+
+  ### get pokemon costume
+  def getCostume(self,value,language):
+    data = open('json/Costume.json').read()
+    switch = json.loads(data)
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
+
+  ### tranlate some other text
   def getTranslate(self,value,language):
     text = {
       "noQuest": {

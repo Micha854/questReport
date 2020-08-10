@@ -13,10 +13,10 @@ class Config():
   user = ""
   password = ""
   token = ""
-  singlechatId = ""
-  singlechatUrl = ""
   chatId = ""
   chatUrl = ""
+  singlechatId = ""
+  singlechatUrl = ""
   language = ""
   venue = bool
   areaName = ""
@@ -37,10 +37,10 @@ class Config():
     self.password = parser.get('Mysql', 'password')
 
     self.token = parser.get('Bot Settings', 'token')
-    self.singlechatId = parser.get('Bot Settings', 'singlechat_id')
-    self.singlechatUrl = parser.get('Bot Settings', 'singlechat_url')
     self.chatId = parser.get('Bot Settings', 'chat_id')
     self.chatUrl = parser.get('Bot Settings', 'chat_url')
+    self.singlechatId = parser.get('Bot Settings', 'singlechat_id')
+    self.singlechatUrl = parser.get('Bot Settings', 'singlechat_url')
 
     self.language = parser.get('Option', 'language')
     self.venue = parser.getboolean('Option', 'venue')
