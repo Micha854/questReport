@@ -6,12 +6,18 @@ class questReward():
   def getItem(self,value,language):
     data = open('json/QuestReward.json').read()
     switch = json.loads(data)
-    return switch[str(value)][language]
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
 
   def getPokemon(self,value,language):
     data = open('json/Pokemon.json').read()
     switch = json.loads(data)
-    return switch[str(value)][language]
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
 
 class Sql():
   pokestop_id = []

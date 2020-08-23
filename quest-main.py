@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#import importer
+import importer
 import config
 import createMessage
 import sql
