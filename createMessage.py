@@ -37,13 +37,13 @@ class createMessage():
         name = "Unknown Pokestop" if Sql.name[i] is None else Sql.name[i]
         task = Sql.quest_task[i]
 
-        if self.getForm(Sql.form[i],cfg.language):
-          getform = "(" + self.getForm(Sql.form[i],cfg.language) + ")"
+        if self.getForm(Sql.quest_pokemon_form_id[i],cfg.language):
+          getform = "(" + self.getForm(Sql.quest_pokemon_form_id[i],cfg.language) + ")"
         else:
           getform = ""
 
-        if self.getCostume(Sql.costume[i],cfg.language):
-          getcostume = "(" + self.getCostume(Sql.costume[i],cfg.language) + ")"
+        if self.getCostume(Sql.quest_pokemon_costume_id[i],cfg.language):
+          getcostume = "(" + self.getCostume(Sql.quest_pokemon_costume_id[i],cfg.language) + ")"
         else:
           getcostume = ""
 
