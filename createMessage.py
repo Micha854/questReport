@@ -50,8 +50,36 @@ class createMessage():
         if Sql.pokestop_id:
           if Sql.quest_stardust[i] in (stardust) or Sql.quest_item_id[i] in (item) or Sql.quest_pokemon_id[i] in (pokemon):
 
+            ## MEGA ENGINE
+            if Sql.quest_pokemon_id[i] in (pokemon) and Sql.quest_reward_type[i] == 12:
+              bolt_line = self.getItem("0","icon") + " <b>" + " " + str(Sql.quest_item_amount[i]) + " " + str(self.getPokemon(Sql.quest_pokemon_id[i],cfg.language) + getform + getcostume) + " " + str(self.getType(Sql.quest_reward_type[i],cfg.language))
+              if Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i] and not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1]:
+                msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
+                msg2= "\n"
+              elif Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i]:
+                if not Sql.quest_task[i] == Sql.quest_task[i+1]:
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
+                  msg2 = "\n"
+                else:
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
+                  msg2 = ""
+              elif not Sql.quest_task[i-1] == Sql.quest_task[i]:
+                if not Sql.quest_task[i] == Sql.quest_task[i+1]:
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
+                  msg2 = "\n"
+                else:
+                  msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n├ "
+                  msg2 = ""
+              else:
+                if not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1] or not Sql.quest_task[i] == Sql.quest_task[i+1]:
+                  msg = "\n└ "
+                  msg2= "\n"
+                else:
+                  msg = "\n├ "
+                  msg2= ""
+
             ## STARDUST
-            if not Sql.quest_stardust[i] == 0:
+            elif not Sql.quest_stardust[i] == 0:
               bolt_line = "\u2728 <b>" + str(Sql.quest_stardust[i]) + " " + str(self.getType(Sql.quest_reward_type[i],cfg.language))
               if Sql.quest_stardust[i-1] != Sql.quest_stardust[i] and not Sql.quest_stardust[i] == Sql.quest_stardust[i+1]:
                 msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
@@ -107,7 +135,7 @@ class createMessage():
                   msg2= ""
             
             ## POKEMON
-            elif Sql.quest_pokemon_id[i] in (pokemon):
+            elif Sql.quest_pokemon_id[i] in (pokemon) and not Sql.quest_reward_type[i] == 12:
               bolt_line = "\U0001F47E <b>" + str(self.getPokemon(Sql.quest_pokemon_id[i],cfg.language) + getform + getcostume)
               if Sql.quest_pokemon_id[i-1] != Sql.quest_pokemon_id[i] and not Sql.quest_pokemon_id[i] == Sql.quest_pokemon_id[i+1]:
                 msg = "\n" + str(bolt_line + "</b>\n├ " + task) + "\n└ "
