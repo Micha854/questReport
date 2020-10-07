@@ -233,7 +233,6 @@ class createMessage():
         ausgabe += "quest_pokemon_form_id: " + str(Sql.quest_pokemon_form_id.__len__) + "\n"
         ausgabe += "quest_pokemon_costume_id: " + str(Sql.quest_pokemon_costume_id.__len__) + "\n"
         ausgabe += "Wert i" + str(i) + "\n"
-        ausgabe += "All Variable: " + str(len(all))
         outF.writelines(ausgabe + str(e))
         outF.close()
 
