@@ -287,12 +287,12 @@ class createMessage():
       "noQuest": {
         "de": "Keine Quest gefunden",
         "en": "No Quest found",
-        "fr": "Aucune quête trouvée"
+        "fr": "Aucune quêtes trouvées"
       },
       "scanned": {
         "de": "Stops wurden gescannt",
         "en": "stops were scanned",
-        "fr": "Les arrêts ont été scannés"
+        "fr": "Pokéstops ont été scannés"
       },
       "Monday": {
         "de": "Montag",
@@ -322,12 +322,12 @@ class createMessage():
       "Saturday": {
         "de": "Samstag",
         "en": "Saturday",
-        "fr": "samedi"
+        "fr": "Samedi"
       },
       "Sunday": {
         "de": "Sonntag",
         "en": "Sunday",
-        "fr": "dimanche"
+        "fr": "Dimanche"
       }
     }
     return text[value][language]
