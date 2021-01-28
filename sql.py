@@ -77,7 +77,7 @@ class Sql():
       pokemon_sort = "q.quest_pokemon_id DESC"
     
     # Abfragen der Daten aus der Datenbank
-    cursor.execute("SELECT p.pokestop_id, p.name, p.latitude, p.longitude, q.quest_task, q.quest_stardust, q.quest_pokemon_id, q.quest_reward_type, q.quest_item_id, q.quest_item_amount, q.quest_pokemon_form_id, q.quest_pokemon_costume_id FROM `trs_quest` q INNER JOIN pokestop p ON q.GUID = p.pokestop_id WHERE FROM_UNIXTIME(quest_timestamp,'%Y-%m-%d') = CURDATE() AND ST_CONTAINS(st_geomfromtext('POLYGON(( " + cfg.fence + " ))') , point(g.latitude,g.longitude)) ORDER BY q.quest_stardust DESC, q.quest_reward_type, " + pokemon_sort + ", " + item_sort + ", q.quest_item_amount DESC, q.quest_task, p.name")
+    cursor.execute("SELECT p.pokestop_id, p.name, p.latitude, p.longitude, q.quest_task, q.quest_stardust, q.quest_pokemon_id, q.quest_reward_type, q.quest_item_id, q.quest_item_amount, q.quest_pokemon_form_id, q.quest_pokemon_costume_id FROM `trs_quest` q INNER JOIN pokestop p ON q.GUID = p.pokestop_id WHERE FROM_UNIXTIME(quest_timestamp,'%Y-%m-%d') = CURDATE() AND ST_CONTAINS(st_geomfromtext('POLYGON(( " + cfg.fence + " ))') , point(p.latitude,p.longitude)) ORDER BY q.quest_stardust DESC, q.quest_reward_type, " + pokemon_sort + ", " + item_sort + ", q.quest_item_amount DESC, q.quest_task, p.name")
     #all = cursor.fetchall()
     all = list(cursor.fetchall())
     
